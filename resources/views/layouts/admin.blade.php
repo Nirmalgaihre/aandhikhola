@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { background-color: #f8fafc; font-family: 'Inter', sans-serif; color: #1e293b; }
@@ -112,17 +114,29 @@
             <div class="nav-group-label">People</div>
 
             {{-- Staff Management --}}
-            <div x-data="{ open: {{ request()->is('admin/staff*') ? 'true' : 'false' }} }">
-                <button @click="open = !open" class="nav-item w-full flex items-center px-6 py-3.5 justify-between {{ request()->is('admin/staff*') ? 'active' : '' }}">
-                    <span class="flex items-center"><i class="fa-solid fa-users-gear mr-3 w-5"></i> Staff Management</span>
-                    <i class="fa-solid fa-chevron-right text-[10px] transition-transform" :class="open ? 'rotate-90' : ''"></i>
-                </button>
-                <div class="submenu-container" :class="open ? 'submenu-open' : ''">
-                    <a href="{{ route('staff.create') }}" class="block px-14 py-2 text-xs hover:text-yellow-400"><i class="fa-solid fa-user-plus mr-2"></i> Add Staff</a>
-                    <a href="{{ route('staff.index') }}" class="block px-14 py-2 text-xs hover:text-yellow-400"><i class="fa-solid fa-list-check mr-2"></i> Manage Staff</a>
-                    <a href="{{ route('staff.hierarchy') }}" class="block px-14 py-2 text-xs hover:text-yellow-400"><i class="fa-solid fa-sitemap mr-2"></i> Hierarchy Order</a>
-                </div>
-            </div>
+<div x-data="{ open: {{ request()->is('admin/staff*') ? 'true' : 'false' }} }">
+    <button @click="open = !open" class="nav-item w-full flex items-center px-6 py-3.5 justify-between {{ request()->is('admin/staff*') ? 'active' : '' }}">
+        <span class="flex items-center">
+            <i class="fa-solid fa-users-gear mr-3 w-5"></i> Staff Management
+        </span>
+        <i class="fa-solid fa-chevron-right text-[10px] transition-transform" :class="open ? 'rotate-90' : ''"></i>
+    </button>
+    <div class="submenu-container" :class="open ? 'submenu-open' : ''">
+        <a href="{{ route('staff.create') }}" class="block px-14 py-2 text-xs hover:text-yellow-400">
+            <i class="fa-solid fa-user-plus mr-2"></i> Add Staff
+        </a>
+        <a href="{{ route('staff.index') }}" class="block px-14 py-2 text-xs hover:text-yellow-400">
+            <i class="fa-solid fa-list-check mr-2"></i> Manage Staff
+        </a>
+        {{-- Added Category Link Below --}}
+        <a href="{{ route('staff-categories.index') }}" class="block px-14 py-2 text-xs hover:text-yellow-400 {{ request()->is('admin/staff/categories') ? 'text-yellow-400' : '' }}">
+            <i class="fa-solid fa-layer-group mr-2"></i> Staff Categories
+        </a>
+        <a href="{{ route('staff.hierarchy') }}" class="block px-14 py-2 text-xs hover:text-yellow-400">
+            <i class="fa-solid fa-sitemap mr-2"></i> Hierarchy Order
+        </a>
+    </div>
+</div>
 
             {{-- ID Cards --}}
             <div x-data="{ open: {{ request()->is('admin/id-cards*') ? 'true' : 'false' }} }">

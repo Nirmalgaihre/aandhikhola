@@ -23,6 +23,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\StaffCategoryController;
 
 // Models (only if used directly in routes)
 use App\Models\Notice;
@@ -170,7 +171,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     /*
     |---------------- ANNOUNCEMENTS ----------------|
     */
-  // Announcement Routes
+
+
+    // Video Gallery
+// The page with the form
+    Route::get('/videos/create', [VideoController::class, 'create'])->name('videos.create');
+    
+    // The final database save
+    Route::post('/videos/store', [VideoController::class, 'store'])->name('videos.store');
+
+    // The FilePond chunk handler
+    Route::post('/upload/process', [VideoController::class, 'upload'])->name('upload.process');
+    Route::match(['POST', 'PATCH'], '/upload/process', [VideoController::class, 'upload'])->name('upload.process');
   // Announcement Management
     Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
     Route::get('/announcements/create', [AnnouncementController::class, 'create'])->name('announcements.create');
@@ -233,7 +245,13 @@ Route::put('/{post}', [BlogController::class, 'update'])->name('blog.update');
     Route::get('/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
     Route::put('/{id}', [StaffController::class, 'update'])->name('staff.update');
     Route::delete('/{id}', [StaffController::class, 'destroy'])->name('staff.destroy');
-});
+
+// This points the category management to the staff subdirectory logic
+Route::get('/categories', [StaffCategoryController::class, 'index'])->name('staff-categories.index');    
+Route::get('/categories', [StaffCategoryController::class, 'index'])->name('staff-categories.index');
+    Route::post('/categories', [StaffCategoryController::class, 'store'])->name('staff-categories.store');
+    Route::delete('/categories/{id}', [StaffCategoryController::class, 'destroy'])->name('staff-categories.destroy');
+    });
 
     /*
     |---------------- SETTINGS / PRINCIPAL MESSAGE ----------------|
