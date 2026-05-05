@@ -1,6 +1,6 @@
-# 🎓 Aandhikhola Polytechnic Institute - Management System
+# 🎓 Annapurna Polytechnic Institute - Management System
 
-A comprehensive, responsive web platform designed to digitize administrative workflows and enhance public engagement for **Aandhikhola Polytechnic Institute**.
+A comprehensive, responsive web platform designed to digitize administrative workflows and enhance public engagement for **Annapurna Polytechnic Institute**.
 
 ---
 
@@ -50,7 +50,7 @@ The frontend is designed with a modern **Tailwind CSS** UI, focusing on accessib
 
 ## 🛡 License & Copyright
 
-**Copyright © 2026 Nirmal Gaihre.** All rights reserved. This software is developed specifically for **Aandhikhola Polytechnic Institute**. 
+**Copyright © 2026 Nirmal Gaihre.** All rights reserved. This software is developed specifically for **Annapurna Polytechnic Institute**. 
 
 ---
 
